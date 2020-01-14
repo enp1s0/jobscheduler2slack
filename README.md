@@ -15,10 +15,6 @@ cd jobscheduler2slack
 WEBHOOK_URL=https://hooks.slack.com/services/...
 ```
 
-4. Set `PATH` in your .bashrc or .zshrc or ...
-```
-export PATH=$PATH:/path/to/jobscheduler2slack
-```
 
 ## Usage
 
@@ -27,6 +23,7 @@ job_script.sh
 #!/bin/sh
 #$ ...
 #$ ...
+export PATH=$PATH:/path/to/jobscheduler2slack
 
 post_message "Hello!"
 
