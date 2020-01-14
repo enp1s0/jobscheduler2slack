@@ -8,7 +8,7 @@ git clone https://github.com/enp1s0/jobscheduler2slack.git
 cd jobscheduler2slack
 ```
 
-1. Get Webhook URL ([Sending messages using Incoming Webhooks - Slack](https://api.slack.com/messaging/webhooks))
+1. Get Webhook URL (See [Sending messages using Incoming Webhooks - Slack](https://api.slack.com/messaging/webhooks))
 
 1. Set `WEBHOOK_URL` in post_message
 ```sh
@@ -32,3 +32,8 @@ post_message "Start"
 
 #./a.out
 ```
+
+## Supported job scheduler
+- UGE
+- Slurm
+- TORQUE
