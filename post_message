@@ -21,5 +21,5 @@ elif [ -n "$JOB_ID" ]; then
 fi
 
 if [ -n "$POST_MESSAGE" ]; then
-	curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"$POST_MESSAGE\"}" "$WEBHOOK_URL"
+	curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"$POST_MESSAGE\"}" "$WEBHOOK_URL" > /dev/null 2>&1
 fi
