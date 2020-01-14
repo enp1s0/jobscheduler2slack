@@ -17,7 +17,7 @@ WEBHOOK_URL=https://hooks.slack.com/services/...
 
 4. Set `PATH` in your .bashrc or .zshrc or ...
 ```
-export PATH=PATH:/path/to/jobscheduler2slack
+export PATH=$PATH:/path/to/jobscheduler2slack
 ```
 
 ## Usage
