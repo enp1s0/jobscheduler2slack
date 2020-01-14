@@ -3,22 +3,23 @@
 WEBHOOK_URL=
 
 POST_MESSAGE=""
+HOST_NAME=`hostname`
 
-if [[ -n $1 ]];then
+if [ -n "$1" ];then
 	POST_MESSAGE="$1 "
 fi
 
-if [[ -n $SLURM_JOBID ]]; then
+if [ -n "$SLURM_JOBID" ]; then
 	# for SLURM
-	POST_MESSAGE="$POST_MESSAGE[$SLURM_JOB_NAME - ($SLURM_JOBID) @$SLURM_SUBMIT_HOST]"
-elif [[ -n $PBS_JOBID ]]; then
+	POST_MESSAGE="$POST_MESSAGE[JobName:$SLURM_JOB_NAME (JobID:$SLURM_JOBID) @$HOST_NAME]"
+elif [ -n "$PBS_JOBID" ]; then
 	# for TORQUE
-	POST_MESSAGE="$POST_MESSAGE[$PBS_JOBNAME - ($PBS_JOBID) @$PBS_O_HOST]"
-elif [[ -n $JOB_ID ]]; then
+	POST_MESSAGE="$POST_MESSAGE[JobName:$PBS_JOBNAME (JobID:$PBS_JOBID) @$HOST_NAME]"
+elif [ -n "$JOB_ID" ]; then
 	# for UGE (TSUBAME 3.0)
-	POST_MESSAGE="$POST_MESSAGE[$JOB_NAME - ($JOB_ID) @$SGE_O_HOST]"
+	POST_MESSAGE="$POST_MESSAGE[JobName:$JOB_NAME (JobID:$JOB_ID) @$HOST_NAME]"
 fi
 
-if [[ -n $POST_MESSAGE ]]; then
+if [ -n "$POST_MESSAGE" ]; then
 	curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"$POST_MESSAGE\"}" "$WEBHOOK_URL"
 fi
