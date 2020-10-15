@@ -38,4 +38,4 @@ Hello! [JobName:j2s-test (JobID:6528295) @r5i0n5]
 ## Supported job scheduler
 - UGE
 - Slurm
-- TORQUE
+- TORQUE/OpenPBS
