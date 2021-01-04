@@ -39,3 +39,4 @@ Hello! [JobName:j2s-test (JobID:6528295) @r5i0n5]
 - UGE
 - Slurm
 - TORQUE/OpenPBS
+- vico (https://github.com/enp1s0/vico)
