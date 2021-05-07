@@ -19,6 +19,9 @@ elif [ -n "$PBS_JOBID" ]; then
 elif [ -n "$JOB_ID" ]; then
 	# for UGE (TSUBAME 3.0)
 	POST_MESSAGE="$POST_MESSAGE[JobName:$JOB_NAME (JobID:$JOB_ID) @$HOST_NAME, $DATE]"
+elif [ -n "$PJM_SUBJOBID" ]; then
+	# for PJM (Fugaku)
+	POST_MESSAGE="$POST_MESSAGE[JobName:$PJM_JOBNAME (JobID:$PJM_SUBJOBID) @$HOST_NAME, $DATE]"
 elif [ -n "$VICO_JOB_ID" ]; then
 	# for vico (https://github.com/enp1s0/vico)
 	POST_MESSAGE="$POST_MESSAGE[JobName:$VICO_JOB_NAME (JobID:$VICO_JOB_ID) @$HOST_NAME, $DATE]"
