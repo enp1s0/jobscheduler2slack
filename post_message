@@ -10,22 +10,32 @@ if [ -n "$1" ];then
 	POST_MESSAGE="$1 "
 fi
 
+J2S_JOB_NAME=""
+J2S_JOB_ID=""
+
 if [ -n "$SLURM_JOBID" ]; then
 	# for SLURM
-	POST_MESSAGE="$POST_MESSAGE[JobName:$SLURM_JOB_NAME (JobID:$SLURM_JOBID) @$HOST_NAME, $DATE]"
+	J2S_JOB_ID=$SLURM_JOBID
+	J2S_JOB_NAME=$SLURM_JOB_NAME
 elif [ -n "$PBS_JOBID" ]; then
 	# for TORQUE
-	POST_MESSAGE="$POST_MESSAGE[JobName:$PBS_JOBNAME (JobID:$PBS_JOBID) @$HOST_NAME, $DATE]"
+	J2S_JOB_ID=$PBS_JOBID
+	J2S_JOB_NAME=$PBS_JOBNAME
 elif [ -n "$JOB_ID" ]; then
 	# for UGE (TSUBAME 3.0)
-	POST_MESSAGE="$POST_MESSAGE[JobName:$JOB_NAME (JobID:$JOB_ID) @$HOST_NAME, $DATE]"
+	J2S_JOB_ID=$JOB_ID
+	J2S_JOB_NAME=$JOB_NAME
 elif [ -n "$PJM_SUBJOBID" ]; then
 	# for PJM (Fugaku)
-	POST_MESSAGE="$POST_MESSAGE[JobName:$PJM_JOBNAME (JobID:$PJM_SUBJOBID) @$HOST_NAME, $DATE]"
+	J2S_JOB_ID=$PJM_SUBJOBID
+	J2S_JOB_NAME=$PJM_JOBNAME
 elif [ -n "$VICO_JOB_ID" ]; then
 	# for vico (https://github.com/enp1s0/vico)
-	POST_MESSAGE="$POST_MESSAGE[JobName:$VICO_JOB_NAME (JobID:$VICO_JOB_ID) @$HOST_NAME, $DATE]"
+	J2S_JOB_ID=$VICO_JOB_ID
+	J2S_JOB_NAME=$VICO_JOB_NAME
 fi
+
+POST_MESSAGE="$POST_MESSAGE[JobName:$J2S_JOB_NAME (JobID:$J2S_JOB_ID) @$HOST_NAME, $DATE]"
 
 if [ -n "$POST_MESSAGE" ]; then
 	curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"$POST_MESSAGE\"}" "$WEBHOOK_URL" > /dev/null 2>&1
