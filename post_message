@@ -14,8 +14,12 @@ J2S_JOB_NAME=""
 J2S_JOB_ID=""
 
 if [ -n "$SLURM_JOBID" ]; then
-	# for SLURM
+	# for SLURM (1/2)
 	J2S_JOB_ID=$SLURM_JOBID
+	J2S_JOB_NAME=$SLURM_JOB_NAME
+elif [ -n "$SLURM_JOB_ID" ]; then
+	# for SLURM (2/2)
+	J2S_JOB_ID=$SLURM_JOB_ID
 	J2S_JOB_NAME=$SLURM_JOB_NAME
 elif [ -n "$PBS_JOBID" ]; then
 	# for TORQUE
