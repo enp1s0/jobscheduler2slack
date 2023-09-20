@@ -10,11 +10,10 @@ cd jobscheduler2slack
 
 2. Get Webhook URL (See [Sending messages using Incoming Webhooks - Slack](https://api.slack.com/messaging/webhooks))
 
-3. Set `WEBHOOK_URL` in post_message
+3. Set `WEBHOOK_URL` in `$HOME/.js2slack.conf`
 ```sh
 WEBHOOK_URL=https://hooks.slack.com/services/...
 ```
-
 
 ## Usage
 
@@ -23,9 +22,9 @@ job_script.sh
 #!/bin/sh
 #$ ...
 #$ ...
-export PATH=$PATH:/path/to/jobscheduler2slack
+export PATH=$PATH:/path/to/jobscheduler2slack/bin
 
-post_message "Hello!"
+js2slack_post "Hello!"
 
 #./a.out
 ```
@@ -36,8 +35,8 @@ Hello! [JobName:j2s-test (JobID:6528295) @r5i0n5]
 ```
 
 ## Supported job scheduler
-- UGE (TSUBAME 3.0, ABCI and so on)
-- Slurm (TSUBAME KFC and so on)
+- UGE (TSUBAME 3.0, ABCI, etc)
+- Slurm (TSUBAME KFC, etc)
 - TORQUE/OpenPBS
-- Fujutsu Job Scheduler (`pjsub`) (Fugaku and so on)
+- Fujutsu Job Scheduler (`pjsub`) (Fugaku, etc)
 - vico (https://github.com/enp1s0/vico)
