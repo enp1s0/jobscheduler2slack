@@ -1,6 +1,26 @@
 #!/bin/sh
 
-WEBHOOK_URL=
+
+CONFIG_FILE_PATH=
+if [ -n "$JS2SLACK_CONFIG" ];then
+  CONFIG_FILE_PATH=$JS2SLACK_CONFIG
+  if [ -e "$CONFIG_FILE_PATH" ];then
+    echo "Could not load the config file: $JS2SLACK_CONFIG"
+  fi
+elif [ -e "$HOME/.js2slack.conf" ];then
+  if [ -e "$CONFIG_FILE_PATH" ];then
+    echo "Could not load the config file: $JS2SLACK_CONFIG"
+  else
+    CONFIG_FILE_PATH=$HOME/.js2slack.conf
+  fi
+fi
+
+if [ -n "$CONFIG_FILE_PATH" ];then
+  source $CONFIG_FILE_PATH
+else
+  echo "An error occurs. exit."
+  exit
+fi
 
 POST_MESSAGE=""
 HOST_NAME=`hostname`
