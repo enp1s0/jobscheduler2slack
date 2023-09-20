@@ -16,6 +16,10 @@ echo 'WEBHOOK_URL=https://hooks.slack.com/services/...' > $HOME/.js2slack.conf
 chmod 600 $HOME/.js2slack.conf
 ```
 
+> **Note**
+> If you want to put the config file somewhere other than the home directory, put it anywhere and set the environment variable `$JS2SLACK_CONFIG`.
+
+
 ## Usage
 
 job_script.sh
