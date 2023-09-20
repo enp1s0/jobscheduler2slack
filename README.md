@@ -12,7 +12,8 @@ cd jobscheduler2slack
 
 3. Set `WEBHOOK_URL` in `$HOME/.js2slack.conf`
 ```sh
-WEBHOOK_URL=https://hooks.slack.com/services/...
+echo 'WEBHOOK_URL=https://hooks.slack.com/services/...' > $HOME/.js2slack.conf
+chmod 600 $HOME/.js2slack.conf
 ```
 
 ## Usage
