@@ -1,5 +1,4 @@
-#!/bin/sh
-
+#!/bin/bash
 
 CONFIG_FILE_PATH=
 if [ -n "$JS2SLACK_CONFIG" ];then
